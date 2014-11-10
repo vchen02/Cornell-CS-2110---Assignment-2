@@ -48,6 +48,12 @@ public class FunWithStrings {
      * Examples: For s = "    David Gries"  return "Gries, David"
      *           For s = "Doug       James " return "James, Doug" 
      */
+    
+    /** Thought Process
+     * 1. Trim leading and trailing white spaces in the string
+     * 2. Trim white spaces between first name and last name
+     * 3. Format result string with format: Last, First
+     */
     public static String fixName(String s) {
         /* As you know, String is a class. An object of class String is immutable
          * --you cannot change the sequence of chars that it contains.
@@ -58,8 +64,12 @@ public class FunWithStrings {
          * Finally, this method can be written using an oft-used pattern:
          *   1. Break the string into its parts
          *   2. Build the result from the parts. */
-
-        return null;
+    	assert(s != null);
+        String result = s.trim(),	//remove leading and trailing white spaces
+        	first = result.substring(0, result.indexOf(" ")),
+        	last = result.substring(result.lastIndexOf(" ")+1,result.length()-1);
+       
+    	return last + ", " + first;
     }
 
     /** 

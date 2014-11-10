@@ -27,5 +27,9 @@ public class TestFunStrings {
 	private void testfixName() {
 		assertEquals("Gries, David", FunWithStrings.fixName("    David Gries"));
 		assertEquals("James, Doug", FunWithStrings.fixName("Doug       James "));
+		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor Chen   "));
+		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor, Chen   "));
+		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor middle Chen   "));
+		assertEquals("x, Victor", FunWithStrings.fixName("Victor Chen   x"));
 	}
 }
