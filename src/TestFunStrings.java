@@ -10,6 +10,7 @@ public class TestFunStrings {
 	@Test
 	public void test() {
 		testContainsOne();
+		testfixName();
 	}
 	
 	private void testContainsOne() {
@@ -28,8 +29,9 @@ public class TestFunStrings {
 		assertEquals("Gries, David", FunWithStrings.fixName("    David Gries"));
 		assertEquals("James, Doug", FunWithStrings.fixName("Doug       James "));
 		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor Chen   "));
-		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor, Chen   "));
+		assertEquals("Chen, Victor,", FunWithStrings.fixName("   Victor, Chen   "));
 		assertEquals("Chen, Victor", FunWithStrings.fixName("   Victor middle Chen   "));
 		assertEquals("x, Victor", FunWithStrings.fixName("Victor Chen   x"));
 	}
+	
 }

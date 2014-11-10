@@ -67,7 +67,7 @@ public class FunWithStrings {
     	assert(s != null);
         String result = s.trim(),	//remove leading and trailing white spaces
         	first = result.substring(0, result.indexOf(" ")),
-        	last = result.substring(result.lastIndexOf(" ")+1,result.length()-1);
+        	last = result.substring(result.lastIndexOf(" ")+1,result.length());
        
     	return last + ", " + first;
     }
