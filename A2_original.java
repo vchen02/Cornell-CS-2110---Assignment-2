@@ -1,5 +1,5 @@
 /** An instance contains static methods for assignment A2 */
-public class FunWithStrings {
+public class A2 {
 
     /* NOTE: You will have to rely on methods that are declared in class String.
      * Visit docs.oracle.com/javase/7/docs/api/java/lang/String.html, scroll
@@ -22,21 +22,6 @@ public class FunWithStrings {
          * methods of class String and see how you can tell that the first
          * and last occurrences of s2 in s are the same. Be sure you handle
          * correctly the case that s2 does not occur in s. */
-    	
-    	/** Thought Process
-    	 * 1. Make sure there is at least 1 full sequence of s2 in s
-    	 * 
-    	 * 2. Make sure there are no additional sequence of s2 in s from the 
-    	 * 	last index of the 1st full sequence
-    	 * 
-    	 */
-    	int z = s.indexOf(s2),		//first index of s2 in s
-    		z1 = z+s2.length(),		//last index of the 1st full sequence of s2 in s
-    		z2 = s.indexOf(s2, z1); //find index of additional s2 in s after z1
-    	
-    	if ( z != -1 && z2 == -1) {
-    		return true;
-    	}
         return false;
     }
 
@@ -48,12 +33,6 @@ public class FunWithStrings {
      * Examples: For s = "    David Gries"  return "Gries, David"
      *           For s = "Doug       James " return "James, Doug" 
      */
-    
-    /** Thought Process
-     * 1. Trim leading and trailing white spaces in the string
-     * 2. Trim white spaces between first name and last name
-     * 3. Format result string with format: Last, First
-     */
     public static String fixName(String s) {
         /* As you know, String is a class. An object of class String is immutable
          * --you cannot change the sequence of chars that it contains.
@@ -64,12 +43,8 @@ public class FunWithStrings {
          * Finally, this method can be written using an oft-used pattern:
          *   1. Break the string into its parts
          *   2. Build the result from the parts. */
-    	assert(s != null);
-        String result = s.trim(),	//remove leading and trailing white spaces
-        	first = result.substring(0, result.indexOf(" ")),
-        	last = result.substring(result.lastIndexOf(" ")+1,result.length());
-       
-    	return last + ", " + first;
+
+        return null;
     }
 
     /** 
@@ -82,40 +57,10 @@ public class FunWithStrings {
      * Examples: For s = "    David Joseph Gries" return "DJG".
      *           For s = "Doug James", return "DJ"; 
      */
-    
-    /** Thought Process:
-     * 1. Trim all leading and trailing whitespaces
-     * 2. Partition s with first, middle and/or last name strings.
-     * 3. Return and capitalize the first character of each partition string
-     */
     public static String getInitials(String s) {
         // Do not use a loop or recursion.
-    	
-    	String result = s.trim();
-    	int lastIndex_first = result.indexOf(" "),
-    			firstIndex_middle = result.lastIndexOf(" ", lastIndex_first+1)+1,
-    			lastIndex_middle = result.indexOf(" ", firstIndex_middle+1),
-    			firstIndex_last,
-    			lastIndex_last = result.length();
-    	
-    	if (lastIndex_middle == -1)	
-    	{	//String s does not contain a middle name
-    		firstIndex_last = firstIndex_middle;
-    		lastIndex_middle = firstIndex_middle;
-    	}
-    	else	
-    	{	//String s does contain a middle name
-    		firstIndex_last = result.lastIndexOf(" ", lastIndex_middle+1)+1;
-    	}
-    	
-        String	first = result.substring(0, lastIndex_first).trim(),
-        		middle = result.substring(firstIndex_middle, lastIndex_middle).trim(),
-        		last = result.substring(firstIndex_last, lastIndex_last).trim();
         
-        if(!middle.equals(""))		//include middle initial
-        	return new StringBuilder().append(first.charAt(0)).append(middle.charAt(0)).append(last.charAt(0)).toString().toUpperCase();
-        else						//ignore middle initial
-        	return new StringBuilder().append(first.charAt(0)).append(last.charAt(0)).toString().toUpperCase();
+        return null;
     }
     
     /** 
@@ -125,26 +70,11 @@ public class FunWithStrings {
      * Examples: For s = "Minecraft" return "M*n*cr*ft".
      *           For s = "Alan Turing" return "Al*n T*r*ng".
      */
-    
-    /** Thought Process:
-     * 1. Use replace(char pattern, char replacement)
-     * 2. Each replace method call should replace the specified vowel with '*'
-     * 
-     */
     public static String replaceVowels(String s) {
         // This can be done with five statements. No loop is required.
         // Look for a suitable String function that replaces things.
-       
-    	/*
-    	 
-    	String result = s.replace('a', '*');
-    	result = result.replace('e', '*');
-    	result = result.replace('i', '*');
-    	result = result.replace('o', '*');		
-        return result.replace('u', '*'); 
         
-        */
-    	return s.replace('a','*').replace('e', '*').replace('i', '*').replace('o', '*').replace('u', '*');
+        return null;
     }
     
     /** 
@@ -175,47 +105,13 @@ public class FunWithStrings {
      * followed by a digit; the digit indicates how many times that character
      * should appear. Return the uncompressed version of s.
      */
-    
-    /** Thought Process: 
-     * 1. Precondition:
-     * 	 Compressed string s should simulate alphabet follow by number format.
-     * 	 Consequently, even index of String s should contain alphabet only
-     * 				   odd index of String s should contain number only
-     * 2. Parse String s to grab alphabet content from odd index and concatenate the even index
-     * 	multiplier content to the result string.
-     * 
-     * 
-     */
     public static String decompress(String s) {
         // To produce the integer that is in String s1 use function
         // Integer.parseInt(s1). Remember that a character c is not a String,
         // and to change c into a String you may have to catenate it with the
         // empty String.
         // This function will probably need a loop within a loop
-        String alphabet="", result ="";
-        int multiplier;
         
-        for (int i = 0; i < s.length(); i++)
-        {
-        	//i is even: an character
-        	if (i%2 == 0)
-        	{
-        		alphabet = String.valueOf(s.charAt(i));
-        	}
-        	
-        	//i is odd: multiplier character 
-        	else
-        	{
-        		assert(Character.isDigit(s.charAt(i)));
-        		multiplier = Integer.parseInt(String.valueOf(s.charAt(i)));
-        		while(multiplier > 0)
-        		{
-        			result += alphabet;
-        			multiplier--;
-        		}
-        	}
-        }
-        
-        return result;
+        return null;
     }
 }
