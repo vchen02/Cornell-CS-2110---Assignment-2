@@ -9,9 +9,9 @@ public class FunWithStrings {
      * 
      * In all these methods, you can assume that String parameters are not null. */
 
-    /** 
-     * Strings s and s1 are not null. Return true iff s contains exactly one occurrence
-     *  of s2.
+    /** containsOne(String s, String s2) 
+     * Return true iff s contains exactly one occurrence s2
+     * Precondition: Strings s and s1 are not null. 
      * 
      *  Examples: For s = "ab" and s2 = "bb", return false
      *            For s = "abbb" and s2 = "bb", return true.
@@ -40,7 +40,9 @@ public class FunWithStrings {
         return false;
     }
 
-    /** 
+    /** fixName(String s)
+     * Returns a string formatted as : Last, First
+     * 
      * String s consists of a first name followed by a last name. The two names are
      * separated by 1 or more blanks. There may be blank characters at the
      * beginning of s and at the end of s. 
@@ -72,12 +74,12 @@ public class FunWithStrings {
     	return last + ", " + first;
     }
 
-    /** 
+    /** getInitials(String s)
+     * Return a String containing the person's initials.
+     * 
      * String s contains a person's first name, last name, and possibly a middle name
      * between them. There may be any number of blanks at the beginning and end
      * of s, but between each pair of names there is exactly one blank.
-     * 
-     * Return a String containing the person's initials.
      * 
      * Examples: For s = "    David Joseph Gries" return "DJG".
      *           For s = "Doug James", return "DJ"; 
@@ -118,7 +120,7 @@ public class FunWithStrings {
         	return new StringBuilder().append(first.charAt(0)).append(last.charAt(0)).toString().toUpperCase();
     }
     
-    /** 
+    /** replaceVowels(String s)
      * Return a string that is s but with all lowercase vowels (a, e, i, o, u)
      * replaced by asterisks *.  
      * 
@@ -147,7 +149,7 @@ public class FunWithStrings {
     	return s.replace('a','*').replace('e', '*').replace('i', '*').replace('o', '*').replace('u', '*');
     }
     
-    /** 
+    /** replaceAllVowels(String s)
      * Return a string that is s but with all lowercase and uppercase
      * vowels (a, e, i, o, u, A, E, I, O, U) replaced by asterisks *.  
      * 
@@ -163,17 +165,37 @@ public class FunWithStrings {
         //    for (int i= b; i <= c ; i= i+1) {
         //        ...
         //    }
-        
-        return null;
+    	
+        String result = s;
+    	for (int i = 0; i < s.length(); i++)
+    	{
+    		switch(s.charAt(i))
+    		{
+    			case 'a':
+    			case 'A':
+    			case 'e':
+    			case 'E':
+    			case 'i':
+    			case 'I':
+    			case 'o':
+    			case 'O':
+    			case 'u':
+    			case 'U':
+    				result = result.replaceFirst(String.valueOf(s.charAt(i)), "*");					
+    		}
+    	}
+        return result;
     }
     
-    /** 
+    /** decompress(String s)
+     * Return the uncompressed version of s.
+     * 
      * String s is written in a form that looks something like this: "b3c1b5x2a0".
      * For this s, we want to return the decompressed string "bbbcbbbbbxx".
      * More formally, s is in "compressed form", which means that it consists
      * of a sequence of characters that are NOT digits 0..9 with each character
      * followed by a digit; the digit indicates how many times that character
-     * should appear. Return the uncompressed version of s.
+     * should appear. 
      */
     
     /** Thought Process: 

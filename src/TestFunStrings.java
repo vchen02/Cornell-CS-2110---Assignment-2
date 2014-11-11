@@ -1,7 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
 
@@ -13,6 +12,7 @@ public class TestFunStrings {
 		testContainsOne();
 		testfixName();
 		testgetInitials();
+		testreplaceVowels();
 		testreplaceAllVowels();
 		testdecompress();
 	}
@@ -49,17 +49,22 @@ public class TestFunStrings {
 		assertEquals("VZH", FunWithStrings.getInitials("   Victor  Zhi Huan Chen   "));
 	}
 	
-	private void testreplaceAllVowels() {
+	private void testreplaceVowels() {
 		assertEquals("M*n*cr*ft", FunWithStrings.replaceVowels("Minecraft"));
 		assertEquals("Al*n T*r*ng", FunWithStrings.replaceVowels("Alan Turing"));
 		assertEquals("M*cr*s*ft", FunWithStrings.replaceVowels("Microsoft"));
 		assertEquals("V*ct*r Zh* HU*N ChEn", FunWithStrings.replaceVowels("Victor Zhi HUaN ChEn"));
+	}
+	private void testreplaceAllVowels() {
+		assertEquals("M*n*cr*ft", FunWithStrings.replaceAllVowels("Minecraft"));
+		assertEquals("*l*n T*r*ng", FunWithStrings.replaceAllVowels("Alan Turing"));
+		assertEquals("M*cr*s*ft", FunWithStrings.replaceAllVowels("Microsoft"));
+		assertEquals("V*ct*r Zh* H**N Ch*n", FunWithStrings.replaceAllVowels("Victor Zhi HUaN ChEn"));
 	}
 	
 	private void testdecompress() {
 		assertEquals("bbbcbbbbbxx", FunWithStrings.decompress("b3c1b5x2a0"));
 		assertEquals("Google", FunWithStrings.decompress("G1o2g1l1e1"));
 		assertEquals("BooYeeeeAhh", FunWithStrings.decompress("B1o2Y1e4A1h2"));
-	}
-	
+	}	
 }
