@@ -94,6 +94,22 @@ public class FunWithStrings {
         // Do not use a loop or recursion.
     	
     	String result = s.trim();
+    	
+    	/* The index pointer for the first character of each name 
+    	 * points to the exact index of that string in an array
+    	 * 
+    	 * The index pointer for the last character of each name
+    	 * points to one index above the last character in the name.
+    	 * 
+    	 * The lastIndex - firstIndex should give the length of the name
+    	 * 
+    	 * For example:
+    	 * "Jason Chen" - Length: 10
+    	 * firstIndex_first: 0
+    	 * lastIndex_first: 5
+    	 * firstIndex_last: 6
+    	 * lastIndex_last: 10
+    	 */
     	int lastIndex_first = result.indexOf(" "),
     			firstIndex_middle = result.lastIndexOf(" ", lastIndex_first+1)+1,
     			lastIndex_middle = result.indexOf(" ", firstIndex_middle+1),
